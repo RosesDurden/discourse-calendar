@@ -14,7 +14,7 @@ import DateTimeInputRange from "discourse/components/date-time-input-range";
 import GroupSelector from "discourse/components/group-selector";
 import PluginOutlet from "discourse/components/plugin-outlet";
 import RadioButton from "discourse/components/radio-button";
-import lazyHash from "discourse/helpers/lazy-hash";
+import { hash } from "@ember/template";
 import { extractError } from "discourse/lib/ajax-error";
 import { cook } from "discourse/lib/text";
 import Group from "discourse/models/group";
@@ -343,7 +343,7 @@ export default class PostEventBuilder extends Component {
           <form>
             <PluginOutlet
               @name="post-event-builder-form"
-              @outletArgs={{lazyHash event=@model.event}}
+              @outletArgs={{hash event=@model.event}}
               @connectorTagName="div"
             >
               <EventField>
@@ -580,7 +580,7 @@ export default class PostEventBuilder extends Component {
                   @value={{@model.event.recurrence}}
                   @content={{this.availableRecurrences}}
                   @onChange={{this.setRecurrence}}
-                  @options={{lazyHash
+                  @options={{hash
                     none="discourse_post_event.builder_modal.recurrence.none"
                   }}
                 />

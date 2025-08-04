@@ -5,7 +5,7 @@ import { service } from "@ember/service";
 import DButton from "discourse/components/d-button";
 import PluginOutlet from "discourse/components/plugin-outlet";
 import concatClass from "discourse/helpers/concat-class";
-import lazyHash from "discourse/helpers/lazy-hash";
+import { hash } from "@ember/template";
 import { popupAjaxError } from "discourse/lib/ajax-error";
 
 export default class DiscoursePostEventStatus extends Component {
@@ -119,13 +119,13 @@ export default class DiscoursePostEventStatus extends Component {
     >
       <PluginOutlet
         @name="discourse-post-event-status-buttons"
-        @outletArgs={{lazyHash event=@event}}
+        @outletArgs={{hash event=@event}}
       >
         {{#if this.showGoingButton}}
           {{#unless @event.minimal}}
             <PluginOutlet
               @name="discourse-post-event-status-going-button"
-              @outletArgs={{lazyHash
+              @outletArgs={{hash
                 event=@event
                 markAsGoing=(fn this.changeWatchingInviteeStatus "going")
               }}
@@ -143,7 +143,7 @@ export default class DiscoursePostEventStatus extends Component {
         {{#if this.showInterestedButton}}
           <PluginOutlet
             @name="discourse-post-event-status-interested-button"
-            @outletArgs={{lazyHash
+            @outletArgs={{hash
               event=@event
               markAsInterested=(fn
                 this.changeWatchingInviteeStatus "interested"
@@ -163,7 +163,7 @@ export default class DiscoursePostEventStatus extends Component {
           {{#unless @event.minimal}}
             <PluginOutlet
               @name="discourse-post-event-status-not-going-button"
-              @outletArgs={{lazyHash
+              @outletArgs={{hash
                 event=@event
                 markAsNotGoing=(fn this.changeWatchingInviteeStatus "not_going")
               }}
